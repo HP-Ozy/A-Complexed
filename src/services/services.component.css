@@ -1,0 +1,12 @@
+/* styles.css (o nel tuo stile globale) */
+body {
+    background-color: #fff;
+    color: #000;
+    transition: background-color 0.5s, color 0.5s;
+  }
+  
+  body.dark-mode {
+    background-color: #111;
+    color: #fff;
+  }
+  
