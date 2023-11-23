@@ -12,7 +12,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { PersonsComponent } from "../persons/persons.component";
-
+import { EventsComponent } from '../events/events.component';
 
 
 
@@ -37,7 +37,8 @@ import { PersonsComponent } from "../persons/persons.component";
         MatButtonModule,
         MatMenuModule,
         MatSlideToggleModule,
-        PersonsComponent
+        PersonsComponent,
+        EventsComponent
     ]
 })
 export class AppComponent {
@@ -46,9 +47,15 @@ export class AppComponent {
 
 
   mostraPersons: boolean = false;
-
+  mostraEvents: boolean = false;
   callPersons() {
     this.mostraPersons = true;
+  }
+
+  
+
+  callEvents(){
+    this.mostraEvents = true;
   }
 
 

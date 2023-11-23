@@ -2,11 +2,10 @@
   <button mat-button [matMenuTriggerFor]="menu">Sections</button>
 <mat-menu #menu="matMenu">
   <button mat-menu-item (click)="callPersons()">Add Persons</button>
-  <button mat-menu-item>Add Events</button>
+  <button mat-menu-item (click)="callEvents()">Add Events</button>
   <button mat-menu-item>Add Programs</button>
   <button mat-menu-item>Add or Dell DB</button>
 </mat-menu>
 </mat-toolbar>
-
-
 <app-persons *ngIf="mostraPersons"></app-persons>
+<app-events *ngIf="mostraEvents"></app-events>
