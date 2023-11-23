@@ -3,8 +3,8 @@
 <mat-menu #menu="matMenu">
   <button mat-menu-item routerLink="persons" (click)="callPersons()" >Add Persons</button>
   <button mat-menu-item  routerLink="events" (click)="callEvents()">Add Events</button>
-  <button mat-menu-item>Add Programs</button>
-  <button mat-menu-item>Add or Dell DB</button>
+  <button mat-menu-item routerLink="programs" (click)="callPrograms()">Add Programs</button>
+  <button mat-menu-item routerLink="DB" (click)="callDB()">Add or Dell DB</button>
 </mat-menu>
 </mat-toolbar>
 

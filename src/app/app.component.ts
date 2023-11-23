@@ -14,6 +14,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { PersonsComponent } from "../persons/persons.component";
 import { EventsComponent } from '../events/events.component';
 import { Router } from '@angular/router';
+import { DbComponent } from '../db/db.component';
 
 @Component({
     selector: 'app-root',
@@ -37,7 +38,8 @@ import { Router } from '@angular/router';
         MatMenuModule,
         MatSlideToggleModule,
         PersonsComponent,
-        EventsComponent
+        EventsComponent,
+        DbComponent
     ]
 })
 
@@ -52,13 +54,18 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   callPersons(): void {
-    this.router.navigate(['/persons']); // Sostituisci 'persons' con il percorso della tua componente
+    this.router.navigate(['/persons']);
   }
   
   callEvents(): void {
-    this.router.navigate(['/events']); // Sostituisci 'persons' con il percorso della tua componente
+    this.router.navigate(['/events']); 
   }
-
+  callPrograms(): void {
+    this.router.navigate(['/programs']); 
+  }
+  callDB(): void {
+    this.router.navigate(['/db']); 
+  }
 
 }
 
