@@ -13,8 +13,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { PersonsComponent } from "../persons/persons.component";
 import { EventsComponent } from '../events/events.component';
-
-
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -41,21 +40,23 @@ import { EventsComponent } from '../events/events.component';
         EventsComponent
     ]
 })
+
+
+
+
+
+
 export class AppComponent {
   title = 'my-app';
 
+  constructor(private router: Router) {}
 
-
-  mostraPersons: boolean = false;
-  mostraEvents: boolean = false;
-  callPersons() {
-    this.mostraPersons = true;
+  callPersons(): void {
+    this.router.navigate(['/persons']); // Sostituisci 'persons' con il percorso della tua componente
   }
-
   
-
-  callEvents(){
-    this.mostraEvents = true;
+  callEvents(): void {
+    this.router.navigate(['/events']); // Sostituisci 'persons' con il percorso della tua componente
   }
 
 
