@@ -1,5 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatButtonModule} from '@angular/material/button';
@@ -15,31 +14,42 @@ import { PersonsComponent } from "../persons/persons.component";
 import { EventsComponent } from '../events/events.component';
 import { Router } from '@angular/router';
 import { DbComponent } from '../db/db.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
+
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
     imports: [
-        CommonModule,
-        RouterOutlet,
-        MatExpansionModule,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatIconModule,
-        MatButtonModule,
-        MatMenuModule,
-        MatSlideToggleModule,
-        PersonsComponent,
-        EventsComponent,
-        DbComponent
+      FormsModule,
+      HttpClientModule,
+      CommonModule,
+      RouterOutlet,
+      MatExpansionModule,
+      MatIconModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatButtonModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
+      MatToolbarModule,
+      MatButtonModule,
+      MatIconModule,
+      MatButtonModule,
+      MatMenuModule,
+      MatSlideToggleModule,
+      PersonsComponent,
+      EventsComponent,
+      DbComponent,
+      FormsModule,
+      HttpClientModule,
+      CommonModule,
+      ReactiveFormsModule,
     ]
 })
 

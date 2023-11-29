@@ -10,7 +10,6 @@ export const routes: Routes = [
 {path: 'events', component: EventsComponent},
 {path: 'programs', component: ProgramsComponent},
 {path: 'db', component: DbComponent}
-
 ];
 
 
