@@ -9,7 +9,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ServicesComponent } from '../services/services.component';
+import { catchError } from 'rxjs';
 @Component({
   selector: 'app-persons',
   standalone: true,
@@ -24,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     FormsModule, 
     ReactiveFormsModule,
+    ServicesComponent
   ],
   templateUrl: './persons.component.html',
   styleUrl: './persons.component.css'
@@ -32,25 +34,37 @@ export class PersonsComponent {
 
   myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private services: ServicesComponent) {
       this.myForm = this.fb.group({
           // Define your form controls here
           firstName: ['', Validators.required],
           lastName: ['', Validators.required],
           // Add more fields as needed
       });
-
-  
   }
+
   onSubmit() {
     if (this.myForm.valid) {
         // Form is valid, handle form submission
         const formData = this.myForm.value;
-        // Send data to RESTful API or perform other actions
+
+        // Call the service method to send data to the backend
+        this.services.createData(formData).pipe(
+          catchError(error => {
+            console.error('Error sending data:', error);
+            // Gestisci gli errori qui
+            throw error; // Rilancia l'errore per consentire la gestione successiva
+          })
+        )
+        .subscribe(response => {
+          console.log('Data sent successfully:', response);
+          // Gestisci la risposta dal backend se necessario
+        });
+
+
+       
     }
-}
-
-
+  }
 
   @Output() callPersonsEvent = new EventEmitter<void>();
 
@@ -67,7 +81,6 @@ export class PersonsComponent {
   prevStep() {
     this.step--;
   }
-
  
 }
 

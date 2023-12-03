@@ -17,6 +17,7 @@ import { DbComponent } from '../db/db.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @Component({
@@ -40,13 +41,13 @@ import { CommonModule } from '@angular/common';
       MatToolbarModule,
       MatButtonModule,
       MatIconModule,
-      MatButtonModule,
       MatMenuModule,
       MatSlideToggleModule,
       PersonsComponent,
       EventsComponent,
       DbComponent,
       FormsModule,
+      MatDialogModule,
       HttpClientModule,
       CommonModule,
       ReactiveFormsModule,

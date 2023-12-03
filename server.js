@@ -1,68 +1,42 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
 const app = express();
-const port = 8000;
-
-
-
+const port = 4300;
 app.use(cors());
 
-
-
-mongoose.connect('mongodb://localhost:27017/')
-  .then(() => {
-    console.log('Connessione al database riuscita!');
-    // Avvia il server solo dopo la connessione al database
-    app.listen(port, () => {
-      console.log(`Server in ascolto sulla porta ${port}`);
-    });
-  })
-
-  .catch((err) => {
-    console.error('Errore di connessione al database:', err);
-  });
+// Connect to MongoDB database
+mongoose
+  .connect("mongodb://127.0.0.1:27017/A-X", {
  
+  })
+  .then(() => {
+    console.log("MongoDB connected");
+  })
+  .catch((error) => {
+    console.log("Failed" + error);
+  });
 
-// Mongoose Schema
-const userSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
+
+
+// Schema per la "collection"
+const newSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
   },
   password: {
     type: String,
     required: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
 });
 
-// Mongoose Model
-const User = mongoose.model('User', userSchema);
+// Modello per lo schema
+const angular = mongoose.model("angular", newSchema);
 
 
-// Example route to create a new user
-app.post('/users', async (req, res) => {
-  try {
-    const newUser = await User.create(req.body);
-    res.json(newUser);
-  } catch (error) {
-    console.error('Error creating user:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-// Definizione delle altre route o logiche del server qui...
+module.exports = {
+  app,
+  angular,
+  port,
+};
