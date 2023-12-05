@@ -5,10 +5,11 @@ const app = express();
 const port = 4300;
 app.use(cors());
 
+
 // Connect to MongoDB database
 mongoose
-  .connect("mongodb://127.0.0.1:27017/A-X", {
- 
+  .connect("mongodb://0.0.0.0:27017/A-X", {
+  
   })
   .then(() => {
     console.log("MongoDB connected");
@@ -17,26 +18,57 @@ mongoose
     console.log("Failed" + error);
   });
 
-
-
 // Schema per la "collection"
-const newSchema = new mongoose.Schema({
-  email: {
+const itemSchema = new mongoose.Schema({
+  firstName: {
     type: String,
     required: true,
   },
-  password: {
+  lastName: {
+    type: String,
+    required: true,
+  },
+  age: {
     type: String,
     required: true,
   },
 });
 
 // Modello per lo schema
-const angular = mongoose.model("angular", newSchema);
+const Item = mongoose.model("Item", itemSchema);
 
+// Rotte per le operazioni CRUD
+app.get('/api/items', (req, res) => {
+  Item.find()
+    .then(items => res.json(items))
+    .catch(err => res.status(500).json({ error: err.message }));
+});
 
-module.exports = {
-  app,
-  angular,
-  port,
-};
+app.post('/api/items', (req, res) => {
+  const newItem = new Item({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    age: req.body.age,
+  });
+
+  newItem.save()
+    .then(item => res.json(item))
+    .catch(err => res.status(500).json({ error: err.message }));
+});
+
+app.put('/api/items/:id', (req, res) => {
+  Item.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then(item => res.json(item))
+    .catch(err => res.status(500).json({ error: err.message }));
+});
+
+app.delete('/api/items/:id', (req, res) => {
+  Item.findByIdAndRemove(req.params.id)
+    .then(() => res.json({ success: true }))
+    .catch(err => res.status(500).json({ error: err.message }));
+});
+
+// Avvio del server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});

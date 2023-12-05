@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <button mat-button [matMenuTriggerFor]="menu">Sections</button>
+  <button mat-raised-button color="primary" mat-button [matMenuTriggerFor]="menu" >Sections</button>
 <mat-menu #menu="matMenu">
   <button mat-menu-item routerLink="persons" (click)="callPersons()" >Add Persons</button>
   <button mat-menu-item  routerLink="events" (click)="callEvents()">Add Events</button>

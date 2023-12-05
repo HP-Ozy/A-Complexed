@@ -1,5 +1,5 @@
 <mat-accordion class="example-headers-align" >
-    <mat-expansion-panel  hideToggle [formGroup]="myForm" (ngSubmit)="onSubmit()"  mat-Dialog-content >
+    <mat-expansion-panel mat-Dialog-content >
       <mat-expansion-panel-header>
         <mat-panel-title>
           Personal data
@@ -10,26 +10,20 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
    
-        <mat-form-field>
-        <label for="firstName">First Name</label>
-        <input  matInput type="text" id="firstName" formControlName="firstName">
+      <form  [formGroup]="myForm" (submit)="onSubmit()">
+        <mat-form-field  >
+          <input matInput formControlName="firstName" placeholder="Nome">
         </mat-form-field>
-
-
         <mat-form-field>
-        <mat-label for="lastName">Last Name</mat-label>
-        <input matInput type="text" id="lastName" formControlName="lastName">
+          <input matInput formControlName="lastName" placeholder="Cognome">
         </mat-form-field>
-       
-   
         <mat-form-field>
-        <mat-label>Age</mat-label>
-        <input matInput type="number" min="1" >
+          <input matInput formControlName="age" placeholder="Età">
         </mat-form-field>
+        <button mat-raised-button color="primary"  type="submit">Invia</button>
+      </form>
+      
     
-      <mat-action-row>
-        <button color="primary" type="submit" [disabled]="myForm.invalid" mat-dialog-action mat-button  >Submit</button>
-      </mat-action-row>
     </mat-expansion-panel>
   
     
