@@ -2,10 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const port = 4300;
-app.use(cors());
+const port = 4200;
 
+const corsOptions = {
+  origin: 'http://localhost:4200', // Sostituisci con l'URL del tuo frontend
+  optionsSuccessStatus: 200,
+};
 
+app.use(cors(corsOptions));
 // Connect to MongoDB database
 mongoose
   .connect("mongodb://0.0.0.0:27017/A-X", {
@@ -29,7 +33,7 @@ const itemSchema = new mongoose.Schema({
     required: true,
   },
   age: {
-    type: String,
+    type: Number,
     required: true,
   },
 });

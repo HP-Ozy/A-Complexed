@@ -13,9 +13,22 @@ import { catchError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { error } from 'console';
+
+import { NgModule } from '@angular/core';
+
+
 @Injectable({
   providedIn: 'root',
 })
+
+
+
+
+
+
+
+
+
 
 @Component({
   selector: 'app-persons',
@@ -32,7 +45,11 @@ import { error } from 'console';
     FormsModule, 
     ReactiveFormsModule,
     
+    
   ],
+
+
+  
   templateUrl: './persons.component.html',
   styleUrl: './persons.component.css'
 })
@@ -51,11 +68,11 @@ formData: any;
       });
   }
 
-  private apiUrl = 'mongodb://0.0.0.0:27017/A-X'; // Sostituisci con l'URL del tuo server
+  private apiUrl = 'http://localhost:4200'; // Sostituisci con l'URL del tuo server
 
   
 
-  onSubmit() {
+  async onSubmit() {
     if (this.myForm.valid) {
       const formData = {
         firstName: this.myForm.get('firstName')?.value,
@@ -63,12 +80,15 @@ formData: any;
         age: this.myForm.get('age')?.value,
       };
   
-      this.http.post(this.apiUrl, formData)
-        .subscribe(response => {
-          console.log('Dati inviati con successo al server:', response);
-          // Puoi gestire la risposta del server qui se necessario
-        });
+      this.http.post(this.apiUrl, formData, { responseType: 'json' })
+        .subscribe(function (response) {
+            console.log('Dati inviati con successo al server:', response);
+            // Puoi gestire la risposta del server qui se necessario
+          });
     }
+
+
+    
 }
 
 
