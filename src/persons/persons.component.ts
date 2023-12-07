@@ -56,7 +56,7 @@ import { NgModule } from '@angular/core';
 export class PersonsComponent  {
 
   myForm: FormGroup;
-formData: any;
+  formData: any;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
       this.myForm = this.fb.group({
